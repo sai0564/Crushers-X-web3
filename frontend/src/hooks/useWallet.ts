@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { getBrowserProvider, getChainId } from "../services/contract";
-import { getChainName } from "../config/contract";
+import { CHAIN_ID, getChainName } from "../config/contract";
 
 export interface WalletState {
   address: string | null;
@@ -9,6 +9,7 @@ export interface WalletState {
   isConnected: boolean;
   isConnecting: boolean;
   error: string | null;
+  isSwitching: boolean;
 }
 
 function getSelectedAccount(accounts: string[]): string | null {
@@ -29,6 +30,7 @@ export function useWallet() {
     isConnected: false,
     isConnecting: false,
     error: null,
+    isSwitching: false,
   });
 
   const connect = useCallback(async () => {
@@ -69,12 +71,37 @@ export function useWallet() {
         isConnected: true,
         isConnecting: false,
         error: null,
+        isSwitching: false,
       });
     } catch (err: unknown) {
       setState((s) => ({
         ...s,
         isConnecting: false,
         error: err instanceof Error ? err.message : "Connection failed",
+      }));
+    }
+  }, []);
+
+  const switchToExpectedNetwork = useCallback(async () => {
+    setState((s) => ({ ...s, isSwitching: true, error: null }));
+    try {
+      if (!window.ethereum) throw new Error("MetaMask is not installed");
+      await window.ethereum.request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: `0x${CHAIN_ID.toString(16)}` }],
+      });
+      const chainId = await getChainId();
+      setState((s) => ({
+        ...s,
+        chainId,
+        chainName: getChainName(chainId),
+        isSwitching: false,
+      }));
+    } catch (err: unknown) {
+      setState((s) => ({
+        ...s,
+        isSwitching: false,
+        error: err instanceof Error ? err.message : "Unable to switch networks",
       }));
     }
   }, []);
@@ -95,6 +122,7 @@ export function useWallet() {
           isConnected: false,
           isConnecting: false,
           error: null,
+          isSwitching: false,
         });
       } else {
         const chainId = await getChainId().catch(() => null);
@@ -106,6 +134,7 @@ export function useWallet() {
           isConnected: true,
           isConnecting: false,
           error: null,
+          isSwitching: false,
         }));
       }
     };
@@ -135,5 +164,5 @@ export function useWallet() {
     };
   }, []);
 
-  return { ...state, connect };
+  return { ...state, connect, switchToExpectedNetwork, isWrongNetwork: state.chainId !== null && state.chainId !== CHAIN_ID };
 }
