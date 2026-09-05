@@ -1,0 +1,22 @@
+{
+  "name": "soulbound-certificate",
+  "version": "1.0.0",
+  "description": "On-Chain Verifiable Credentials — Soulbound Certificate dApp",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:local": "hardhat run scripts/deploy.ts --network localhost",
+    "deploy:sepolia": "hardhat run scripts/deploy.ts --network sepolia",
+    "export-abi": "hardhat run scripts/export-abi.ts",
+    "validate:e2e": "hardhat run scripts/validate-e2e.ts",
+    "node": "hardhat node"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^5.1.0",
+    "dotenv": "^16.4.0",
+    "hardhat": "^2.22.0",
+    "tsx": "^4.23.13",
+    "typescript": "~5.7.0"
+  }
+}

@@ -1,0 +1,111 @@
+/* Minimal testing UI — intentionally simple */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: monospace;
+  background: #1a1a1a;
+  color: #e0e0e0;
+}
+
+.app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  border-bottom: 1px solid #444;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+h1 {
+  margin: 0 0 4px 0;
+  font-size: 20px;
+}
+
+h2 {
+  margin: 0 0 12px 0;
+  font-size: 18px;
+}
+
+h3 {
+  margin: 12px 0 8px 0;
+  font-size: 14px;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.tabs button {
+  padding: 8px 16px;
+  background: #333;
+  color: #ccc;
+  border: 1px solid #555;
+  cursor: pointer;
+  font-family: monospace;
+  font-size: 13px;
+}
+
+.tabs button.active {
+  background: #555;
+  color: #fff;
+  border-color: #888;
+}
+
+button {
+  padding: 6px 12px;
+  background: #444;
+  color: #ddd;
+  border: 1px solid #666;
+  cursor: pointer;
+  font-family: monospace;
+  font-size: 13px;
+  margin: 4px 0;
+}
+
+button:hover {
+  background: #555;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+input {
+  padding: 6px 8px;
+  background: #222;
+  color: #eee;
+  border: 1px solid #555;
+  font-family: monospace;
+  font-size: 13px;
+  margin: 2px 0;
+}
+
+code {
+  background: #2a2a2a;
+  padding: 1px 4px;
+  font-size: 12px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #333;
+  margin: 16px 0;
+}
+
+table {
+  font-size: 13px;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
