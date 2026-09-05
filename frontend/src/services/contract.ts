@@ -39,7 +39,7 @@ export function getReadOnlyContract(rpcUrl?: string): Contract {
   } else {
     const fallbackRpc =
       (import.meta.env.VITE_RPC_URL as string | undefined) ||
-      (CHAIN_ID === 31337 ? "http://127.0.0.1:8545" : "https://rpc.sepolia.org");
+      (CHAIN_ID === 31337 ? "http://127.0.0.1:8545" : "https://ethereum-sepolia-rpc.publicnode.com");
     provider = new JsonRpcProvider(fallbackRpc);
   }
   return new Contract(CONTRACT_ADDRESS, CONTRACT_ABI, provider);

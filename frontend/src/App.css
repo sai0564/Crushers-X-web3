@@ -170,7 +170,7 @@ code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; fo
 .issuer-summary small { color: var(--ink-subtle); font-size: .62rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
 .issuer-summary strong { overflow: hidden; color: #40506b; font-family: "SFMono-Regular", Consolas, monospace; font-size: .73rem; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
 .issuer-summary__identity { grid-template-columns: 32px minmax(0,1fr); grid-template-rows: 1fr; column-gap: 9px; align-items: center; }
-.issuer-summary__identity > div { min-width: 0; }
+.issuer-summary__identity > div { display: grid; gap: 4px; min-width: 0; }
 .issuer-summary__icon { display: grid; place-items: center; width: 32px; height: 32px; color: var(--indigo); background: var(--indigo-soft); border-radius: 8px; }
 .issuer-workspace { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(220px, .72fr); gap: 20px; align-items: stretch; }
 .issue-form { padding: 24px; }
